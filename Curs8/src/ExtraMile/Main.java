@@ -32,6 +32,6 @@ public class Main {
                 }
             }
         }
-        if (!triplets) System.out.println("No pair found");
+        if (!triplets) System.out.println("No triplet found");
     }
 }

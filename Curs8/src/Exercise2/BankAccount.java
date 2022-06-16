@@ -24,7 +24,7 @@ public class BankAccount implements BankAccountInterface {
     @Override
     public void deposit(int deposit) {
         money += deposit;
-        System.out.println("Total amount in you account is " + money);
+        System.out.println("Total amount in your account is " + money);
     }
 
 }
