@@ -14,7 +14,9 @@ public class FakeSet {
     }
 
     public void add(int element) {
-        if (checkUnique(list)) {
+        List <Integer> checkList = new ArrayList<>(list);
+        checkList.add(element);
+        if (checkUnique(checkList)) {
             list.add(element);
             array = sort();
         }
