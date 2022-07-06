@@ -72,7 +72,7 @@ public class Classroom {
         return maxGrade;
     }
 
-    public Integer getAverageGrade(String discipline) {
+    public Double getAverageGrade(String discipline) {
         if (!Objects.equals(discipline, "Physics") && !Objects.equals(discipline, "Mathematics") && !Objects.equals(discipline, "Computer Science") && !Objects.equals(discipline, "History")) {
             System.out.println("Please enter a valid discipline");
             return null;
@@ -83,7 +83,7 @@ public class Classroom {
                 graderListForDiscipline.add(student.getGrade());
             }
         }
-        int sum = 0;
+        double sum = 0;
         for (Integer integer : graderListForDiscipline) {
             sum += integer;
         }

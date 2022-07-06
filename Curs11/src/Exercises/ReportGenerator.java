@@ -17,7 +17,7 @@ public class ReportGenerator {
     public void writeReport () throws IOException {
         writer.write(String.format("%d was the best grade and it was earned by %s", bestStudentGrade().getGrade(), bestStudentGrade().getName()));
         writer.newLine();
-        writer.write(String.format("The average grade was %d", averageGrade()));
+        writer.write(String.format("The average grade was %.2f", averageGrade()));
         writer.newLine();
         writer.write(String.format("%d was the worst grade and it was earned by %s", worstStudentGrade().getGrade(), worstStudentGrade().getName()));
         writer.flush();
@@ -35,12 +35,12 @@ public class ReportGenerator {
         return list.get(index);
     }
 
-    private int averageGrade(){
+    private double averageGrade(){
         int sum = 0;
         for(Student student : list){
             sum += student.getGrade();
         }
-        return sum / list.size();
+        return (double) (sum/ list.size());
     }
 
     private Student worstStudentGrade (){
