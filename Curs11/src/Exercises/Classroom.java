@@ -95,16 +95,12 @@ public class Classroom {
             System.out.println("Please enter a valid discipline");
             return 0;
         }
-        List<Integer> graderListForDiscipline = new ArrayList<>();
+        int worstGrade = 10;
         for (Student student : studentList) {
             if (student.getDiscipline().equals(discipline)) {
-                graderListForDiscipline.add(student.getGrade());
-            }
-        }
-        int worstGrade = 10;
-        for (Integer integer : graderListForDiscipline) {
-            if (worstGrade > integer) {
-                worstGrade = integer;
+                if(worstGrade > student.getGrade()){
+                    worstGrade = student.getGrade();
+                }
             }
         }
         return worstGrade;
