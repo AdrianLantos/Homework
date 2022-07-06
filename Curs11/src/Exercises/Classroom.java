@@ -45,7 +45,7 @@ public class Classroom {
     public int getMaxGrade(String discipline) {
         if (!Objects.equals(discipline, "Physics") && !Objects.equals(discipline, "Mathematics") && !Objects.equals(discipline, "Computer Science") && !Objects.equals(discipline, "History")) {
             System.out.println("Please enter a valid discipline");
-            return 0;
+            return -1;
         }
         List<Integer> graderListForDiscipline = new ArrayList<>();
         for (Student student : studentList) {
@@ -53,7 +53,7 @@ public class Classroom {
                 graderListForDiscipline.add(student.getGrade());
             }
         }
-        int maxGrade = -1;
+        int maxGrade = 0;
         for (Integer integer : graderListForDiscipline) {
             if (maxGrade < integer) {
                 maxGrade = integer;
@@ -77,17 +77,17 @@ public class Classroom {
             System.out.println("Please enter a valid discipline");
             return null;
         }
-        List<Integer> graderListForDiscipline = new ArrayList<>();
+//        List<Integer> graderListForDiscipline = new ArrayList<>();
+        double sum = 0;
+        int listSize = 0;
         for (Student student : studentList) {
             if (student.getDiscipline().equals(discipline)) {
-                graderListForDiscipline.add(student.getGrade());
+                sum += student.getGrade();
+                listSize++;
             }
         }
-        double sum = 0;
-        for (Integer integer : graderListForDiscipline) {
-            sum += integer;
-        }
-        return sum / graderListForDiscipline.size();
+
+        return sum / listSize;
     }
 
     public int getWorstGrade(String discipline) {
