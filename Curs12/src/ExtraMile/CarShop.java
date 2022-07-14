@@ -63,12 +63,12 @@ public class CarShop {
 
     Map<String, List<Car>> groupByPrice() {
         Map<String, List<Car>> result = new HashMap<>();
-        List<String> range = List.of("0 - 50,000", "50,001 - 100,000", "100,001 - 200,000", "> 200,000");
-        for (String string : range) {
-            List<Car> byRange = result.get(string);
-            if (byRange == null) {
-                byRange = new ArrayList<>();
-                result.put(string, byRange);
+        List<String> price = List.of("0 - 50,000", "50,001 - 100,000", "100,001 - 200,000", "> 200,000");
+        for (String string : price) {
+            List<Car> byPrice = result.get(string);
+            if (byPrice == null) {
+                byPrice = new ArrayList<>();
+                result.put(string, byPrice);
             }
         }
 
