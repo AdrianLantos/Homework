@@ -68,6 +68,7 @@ public class QuoteService {
                 quote.setFavourite(true);
                 favoriteQuotes.add(quote);
                 getException = false;
+                break;
             }
         }
         if(getException){
@@ -85,6 +86,7 @@ public class QuoteService {
         while (randomId == 0) {
             randomId = random.nextInt(allQuotes.size() + 1);
         }
+        //E mai eficient sa fac allQuotes.get(randomId);
         for (Quote quote : allQuotes) {
             if(randomId == quote.getId()){
                 return String.valueOf(quote.getId() + ". ") + quote.getQuote();
