@@ -25,7 +25,7 @@ public class Exercise1 {
             return true;
         } else if (word.charAt(0) == word.charAt(word.length() - 1)) {
             try {
-                return palindromeCharCheck(word.substring(2, word.length() - 2));
+                return palindromeCharCheck(word.substring(1, word.length() - 1));
             }catch (StringIndexOutOfBoundsException e){
                 return true;
             }
