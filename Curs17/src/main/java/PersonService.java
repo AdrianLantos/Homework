@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class PersonService {
 
@@ -35,19 +36,19 @@ public class PersonService {
 
     public List<String> capitalLetter(List<Person> list) {
         List<String> result = new ArrayList<>();
-        list.stream()
+        return list.stream()
                 .filter(person -> person.firstName() != null)
-                .forEach(person -> result.add(person.firstName.toUpperCase()));
-        return result;
+                .map(person -> person.firstName().toUpperCase())
+                .toList();
     }
 
     public List<String> firstNameFirstLetter(List<Person> list) {
         List<String> nameList = new ArrayList<>();
-        list.stream().
+        return list.stream().
                 filter(person -> person.firstName() != null)
                 .filter(person -> person.lastName() != null)
-                .forEach(person -> nameList.add(person.firstName() + " " + person.lastName().charAt(0)));
-        return nameList;
+                .map(person -> person.firstName() + " " + person.lastName().charAt(0))
+                .toList();
     }
 
     public List<Person> ageRestricted(List<Person> list) {
@@ -65,10 +66,7 @@ public class PersonService {
     }
 
     public List<String> firstNameUnique(List<Person> list) {
-        List<String> result = new ArrayList<>();
-        list.stream().forEach(person -> result.add(person.firstName()));
-
-        return result.stream().distinct().toList();
+        return list.stream().map(Person::firstName).distinct().toList();
     }
 
     public List<Person> sortByFirstName(List<Person> list) {
