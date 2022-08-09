@@ -22,36 +22,66 @@ public class CountryController {
 
     @GetMapping("countries/names")
     public List<String> getNames(){
-        return countryService.getCountryList().stream().map(Country::getName).toList();
+        return countryService
+                .getCountryList()
+                .stream()
+                .map(Country::getName)
+                .toList();
     }
 
     @GetMapping("countries/{countryId}/capital")
     public String getCapital(@PathVariable int countryId){
-        return countryService.getCountryList().stream().filter(country -> country.getId() == countryId).map(Country::getCapital).reduce(String::concat).get();
+        return countryService.getCountryList()
+                .stream()
+                .filter(country -> country.getId() == countryId)
+                .map(Country::getCapital)
+                .reduce(String::concat)
+                .get();
     }
 
     @GetMapping("countries/{countryId}/population")
     public long getPopulation(@PathVariable int countryId){
-        return countryService.getCountryList().stream().filter(country -> country.getId() == countryId).map(Country::getPopulation).toList().get(0);
+        return countryService.getCountryList()
+                .stream()
+                .filter(country -> country.getId() == countryId)
+                .map(Country::getPopulation)
+                .toList()
+                .get(0);
     }
 
     @GetMapping("continents/{continentName}/countries")
     public List<Country> getCountriesOnContinent(@PathVariable String continentName){
-        return countryService.getCountryList().stream().filter(country -> country.getContinent().equalsIgnoreCase(continentName)).toList();
+        return countryService.getCountryList()
+                .stream()
+                .filter(country -> country.getContinent().equalsIgnoreCase(continentName))
+                .toList();
     }
 
     @GetMapping("countries/{countryId}/neighbours")
     public  List<String> getNeighbours(@PathVariable int countryId){
-        return countryService.getCountryList().stream().filter(country -> country.getId() == countryId).map(Country::getNeighbours).toList().get(0).get();
+        return countryService.getCountryList()
+                .stream()
+                .filter(country -> country.getId() == countryId)
+                .map(Country::getNeighbours)
+                .toList()
+                .get(0)
+                .get();
     }
 
     @PostMapping("continents/{continentName}/countries")
     public List<Country> getCountriesOnContinentWithPopulation(@PathVariable String continentName,
     @RequestParam(required = false) Integer minPopulation){
-        return countryService.getCountryList().stream().filter(country -> country.getContinent().equalsIgnoreCase(continentName)).filter(country -> country.getPopulation() >= minPopulation).toList();
+        return countryService.getCountryList().stream()
+                .filter(country -> country.getContinent().equalsIgnoreCase(continentName))
+                .filter(country -> country.getPopulation() >= minPopulation)
+                .toList();
     }
     @GetMapping("countries/neighbours")
     public List<Country> countryNeighboursAButNotB(@RequestParam(required = false) String includeNeighbour,@RequestParam(required = false) String excludeNeighbour){
-        return countryService.getCountryList().stream().filter(country -> country.getNeighbours().isPresent()).filter(country -> country.getNeighbours().get().contains(includeNeighbour)).filter(country -> !country.getNeighbours().get().contains(excludeNeighbour)).toList();
+        return countryService.getCountryList().stream()
+                .filter(country -> country.getNeighbours().isPresent())
+                .filter(country -> country.getNeighbours().get().contains(includeNeighbour))
+                .filter(country -> !country.getNeighbours().get().contains(excludeNeighbour))
+                .toList();
     }
 }
