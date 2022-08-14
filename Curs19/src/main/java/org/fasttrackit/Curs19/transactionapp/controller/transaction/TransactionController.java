@@ -59,8 +59,8 @@ public class TransactionController {
 
     @PutMapping("{id}")
     public void replaceTransaction(@PathVariable int id) {
-        int idReplacer = transactionService.getAll().stream().map(Transaction::getId).filter(transactionId -> transactionId == id).findFirst().get();
-        transactionService.replaceTransaction(id, new Transaction(idReplacer, "Lapotop", TransactionType.BUY, 4000));
+//        int idReplacer = transactionService.getAll().stream().map(Transaction::getId).filter(transactionId -> transactionId == id).findFirst().get();
+        transactionService.replaceTransaction(id, new Transaction(id, "Lapotop", TransactionType.BUY, 4000));
     }
 
     @DeleteMapping("{id}")
