@@ -5,15 +5,11 @@ import org.fasttrackit.Curs19.transactionapp.exception.TransactionNotFound;
 import org.fasttrackit.Curs19.transactionapp.model.transaction.Transaction;
 import org.fasttrackit.Curs19.transactionapp.model.transaction.TransactionType;
 import org.fasttrackit.Curs19.transactionapp.service.transaction.TransactionService;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("transactions")
@@ -60,7 +56,7 @@ public class TransactionController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteTransaction(int id) {
+    public void deleteTransaction(@PathVariable int id) {
         transactionService.deleteTransaction(id);
     }
 
