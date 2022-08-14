@@ -2,7 +2,7 @@ package org.fasttrackit.Curs19.transactionapp.model.transaction;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.fasttrackit.Curs19.transactionapp.exception.TransactionNotFound;
+
 
 @Setter
 @Getter
