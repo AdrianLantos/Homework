@@ -2,6 +2,7 @@ package org.fasttrackit.Curs19.transactionapp.service.transaction;
 
 import org.fasttrackit.Curs19.transactionapp.exception.TransactionNotFound;
 import org.fasttrackit.Curs19.transactionapp.model.transaction.Transaction;
+import org.fasttrackit.Curs19.transactionapp.model.transaction.TransactionType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -91,15 +91,12 @@ public class TransactionService {
         );
     }
 
-    public Map<Enum, List<Transaction>> getTransactionType() {
-        Map<Enum, List<Transaction>> result = new HashMap<>();
+    public Map<TransactionType, List<Transaction>> getTransactionType() {
+        Map<TransactionType, List<Transaction>> result = new HashMap<>();
         transactionList.stream().map(Transaction::getType).distinct().forEach(transactionType -> result.put(transactionType, new ArrayList<>()));
         result.forEach((key, value) -> result.put(key, transactionList.stream()
                 .filter(transaction -> transaction.getType().equals(key))
                 .toList()));
-        /*for(Map.Entry<Enum, List<Transaction>> pair : result.entrySet()){
-            result.put(pair.getKey(), transactionList.stream().filter(transaction -> transaction.getType().equals(pair.getKey())).toList());
-        }*/
         return result;
     }
 

@@ -27,11 +27,19 @@ public class TransactionController {
             } else if (filterType.equalsIgnoreCase("type")) {
                 return transactionService.getAll(filterType, value);
             } else if (filterType.equalsIgnoreCase("minAmount")) {
-                return transactionService.getAll(filterType, Double.parseDouble(value));
+                try {
+                    return transactionService.getAll(filterType, Double.parseDouble(value));
+                }catch (NumberFormatException e){
+                    throw new RuntimeException("Value must be a double for given filterType");
+                }
             } else if (filterType.equalsIgnoreCase("maxAmount")) {
-                return transactionService.getAll(Double.parseDouble(value));
+                try {
+                    return transactionService.getAll(Double.parseDouble(value));
+                }catch (NumberFormatException e){
+                    throw new RuntimeException("Value must be a double for given filterType");
+                }
             } else {
-                throw new TransactionNotFound("Invalid parameters");
+                throw new TransactionNotFound("Invalid parameters. Can filter by \"product\", \"type\", \"minAmount\" or \"maxAmount\"");
             }
         }
     }
@@ -51,7 +59,7 @@ public class TransactionController {
 
     @PutMapping("{id}")
     public void replaceTransaction(@PathVariable int id) {
-        int idReplacer = transactionService.getAll().stream().filter(transaction -> transaction.getId() == id).map(Transaction::getId).findFirst().get();
+        int idReplacer = transactionService.getAll().stream().map(Transaction::getId).filter(transactionId -> transactionId == id).findFirst().get();
         transactionService.replaceTransaction(id, new Transaction(idReplacer, "Lapotop", TransactionType.BUY, 4000));
     }
 
@@ -61,7 +69,7 @@ public class TransactionController {
     }
 
     @GetMapping("/reports/type")
-    public Map<Enum, List<Transaction>> getTransactionType() {
+    public Map<TransactionType, List<Transaction>> getTransactionType() {
         return transactionService.getTransactionType();
     }
 
