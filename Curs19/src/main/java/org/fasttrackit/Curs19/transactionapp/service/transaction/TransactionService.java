@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -92,21 +93,23 @@ public class TransactionService {
     }
 
     public Map<TransactionType, List<Transaction>> getTransactionType() {
-        Map<TransactionType, List<Transaction>> result = new HashMap<>();
-        transactionList.stream().map(Transaction::getType).distinct().forEach(transactionType -> result.put(transactionType, new ArrayList<>()));
-        result.forEach((key, value) -> result.put(key, transactionList.stream()
-                .filter(transaction -> transaction.getType().equals(key))
-                .toList()));
-        return result;
+//        Map<TransactionType, List<Transaction>> result = new HashMap<>();
+//        transactionList.stream().map(Transaction::getType).distinct().forEach(transactionType -> result.put(transactionType, new ArrayList<>()));
+//        result.forEach((key, value) -> result.put(key, transactionList.stream()
+//                .filter(transaction -> transaction.getType().equals(key))
+//                .toList()));
+        return transactionList.stream()
+                .collect(Collectors.groupingBy (Transaction::getType));
     }
 
 
     public Map<String, List<Transaction>> getTransactionProduct() {
-        Map<String, List<Transaction>> result = new HashMap<>();
-        transactionList.stream().map(Transaction::getProduct).distinct().forEach(product -> result.put(product, new ArrayList<>()));
-        result.forEach((key, value) -> result.put(key, transactionList.stream()
-                .filter(transaction -> transaction.getProduct().equals(key))
-                .toList()));
-        return result;
+//        Map<String, List<Transaction>> result = new HashMap<>();
+//        transactionList.stream().map(Transaction::getProduct).distinct().forEach(product -> result.put(product, new ArrayList<>()));
+//        result.forEach((key, value) -> result.put(key, transactionList.stream()
+//                .filter(transaction -> transaction.getProduct().equals(key))
+//                .toList()));
+        return transactionList.stream()
+                .collect(Collectors.groupingBy(Transaction::getProduct));
     }
 }
