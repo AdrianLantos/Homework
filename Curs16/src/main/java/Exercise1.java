@@ -1,8 +1,9 @@
 public class Exercise1 {
     public static void main(String[] args) {
         System.out.println(sumEven(11));
-        System.out.println(palindromeCheck("Ana", palindromeReverse("Ana")));
+        System.out.println(palindromeCheck("Ana"));
         System.out.println(palindromeCharCheck("racecar"));
+
     }
 
     public static int sumEven (int n){
@@ -33,8 +34,8 @@ public class Exercise1 {
         return false;
     }
 
-    public static boolean palindromeCheck(String word, String comparable) {
-        return word.equalsIgnoreCase(comparable);
+    public static boolean palindromeCheck(String word) {
+        return word.equalsIgnoreCase(palindromeReverse(word));
     }
 
     public static int DigitSum(int n) {

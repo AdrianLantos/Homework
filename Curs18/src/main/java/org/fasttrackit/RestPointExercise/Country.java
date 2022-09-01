@@ -22,30 +22,6 @@ public class Country {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCapital(String capital) {
-        this.capital = capital;
-    }
-
-    public void setPopulation(int population) {
-        this.population = population;
-    }
-
-    public void setContinent(String continent) {
-        this.continent = continent;
-    }
-
-    public void setNeighbours(Optional<List<String>> neighbours) {
-        this.neighbours = neighbours;
-    }
-
-    public void setArea(int area) {
-        this.area = area;
-    }
-
     public String getName() {
         return name;
     }

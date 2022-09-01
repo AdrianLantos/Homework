@@ -1,0 +1,6 @@
+Laptop|SELL|1200
+MasinaDeSpalat|SELL|1500
+Aragaz|BUY|202.2
+SCAUN|SELL|55.8
+MASA|BUY|105.8
+Carte|BUY|122.5
