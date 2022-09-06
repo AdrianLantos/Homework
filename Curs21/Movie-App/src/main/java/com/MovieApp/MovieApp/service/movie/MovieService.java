@@ -24,11 +24,11 @@ public class MovieService {
         this.actorRepository = actorRepository;
         this.studioRepository = studioRepository;
 
-        this.movieRepository.saveAll(memoryProvider.getMovies());
-        this.movieRatingRepository.saveAll(memoryProvider.getRatings());
-        this.reviewRepository.saveAll(memoryProvider.getReviews());
-        this.actorRepository.saveAll(memoryProvider.getActors());
-        this.studioRepository.saveAll(memoryProvider.getStudios());
+        movieRepository.saveAll(memoryProvider.getMovies());
+        movieRatingRepository.saveAll(memoryProvider.getRatings());
+        reviewRepository.saveAll(memoryProvider.getReviews());
+        actorRepository.saveAll(memoryProvider.getActors());
+        studioRepository.saveAll(memoryProvider.getStudios());
     }
 
     public MovieRepository getMovieRepository() {

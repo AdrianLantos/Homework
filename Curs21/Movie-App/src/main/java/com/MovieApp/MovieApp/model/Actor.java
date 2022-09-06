@@ -19,7 +19,12 @@ public class Actor {
     @Column
     private int birthYear;
 
-    @ManyToMany(mappedBy = "actorList")
+    @ManyToMany
+    @JoinTable(
+            name = "movie_credited",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
     @JsonIgnore
     private List<Movie> moviesCredited;
 

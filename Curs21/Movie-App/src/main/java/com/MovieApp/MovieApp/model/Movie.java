@@ -1,5 +1,6 @@
 package com.MovieApp.MovieApp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -17,15 +18,13 @@ public class Movie {
     @Column
     private int year;
 
-    @ManyToMany
-    @JoinTable(
-            name = "actors_credited",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
-    )
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "moviesCredited")
     private List<Actor> actorList;
 
-    public Movie(String name, int year) {
+    public Movie(Integer id, String name, int year) {
+        this.id = id;
         this.name = name;
         this.year = year;
     }
@@ -33,5 +32,6 @@ public class Movie {
     public void creditActor(Actor actor) {
         actorList.add(actor);
     }
+
 }
 
