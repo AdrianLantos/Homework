@@ -32,7 +32,7 @@ public class Actor {
         return moviesCredited;
     }
 
-    public Actor(String name, int birthYear) {
+    public Actor(Integer id, String name, int birthYear) {
         this.name = name;
         this.birthYear = birthYear;
     }

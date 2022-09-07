@@ -102,13 +102,12 @@ public class TransactionService {
                 .collect(Collectors.groupingBy(Transaction::getProduct));
     }
 }
-    /*public List<Transaction> getAll() {
+    /* Metodele de la Tema Curs 19
+    public List<Transaction> getAll() {
         return transactionList;
     }
 
     public List<Transaction> getAll(String product) {
-//        Nu sunt sigur daca trebuie aruncata exceptie aici sau returnam o lista goala in cazul in care nu merge filtrarea
-//        As as face daca ar trebui sa avem o exceptie, dar in continuare returnez lista chiar daca e goala
         List<Transaction> transactions = transactionList.stream()
                 .filter(transaction -> transaction.getProduct().equalsIgnoreCase(product))
                 .toList();

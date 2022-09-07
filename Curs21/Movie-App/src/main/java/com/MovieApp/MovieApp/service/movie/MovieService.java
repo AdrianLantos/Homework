@@ -23,14 +23,15 @@ public class MovieService {
         this.reviewRepository = reviewRepository;
         this.actorRepository = actorRepository;
         this.studioRepository = studioRepository;
+    }
 
+    public void populateDatabase(MemoryProvider memoryProvider){
         movieRepository.saveAll(memoryProvider.getMovies());
         movieRatingRepository.saveAll(memoryProvider.getRatings());
         reviewRepository.saveAll(memoryProvider.getReviews());
         actorRepository.saveAll(memoryProvider.getActors());
         studioRepository.saveAll(memoryProvider.getStudios());
     }
-
     public MovieRepository getMovieRepository() {
         return movieRepository;
     }

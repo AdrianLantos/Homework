@@ -94,14 +94,15 @@ public class MemoryReader implements MemoryProvider {
         }
     }
 
-    private Actor lineToActor(String line) {
+    private Actor lineToActor(Integer id, String line) {
         String[] tokens = line.split("\\|");
-        return new Actor(tokens[0],Integer.parseInt(tokens[1]));
+        return new Actor(id, tokens[0],Integer.parseInt(tokens[1]));
     }
     private List<Actor> readActors() {
+        AtomicInteger id = new AtomicInteger(0);
         try {
             return Files.lines(Path.of("src/main/resources/actor.txt"))
-                    .map(line -> lineToActor(line))
+                    .map(line -> lineToActor(id.getAndIncrement() ,line))
                     .toList();
         } catch (IOException e) {
             throw new RuntimeException(e);
