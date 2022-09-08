@@ -2,10 +2,8 @@ package com.MovieApp.MovieApp.model;
 
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -19,6 +17,10 @@ public class Studio {
 
     @Column
     private String adress;
+
+    @OneToMany(cascade = CascadeType.PERSIST,
+            mappedBy = "studio")
+    private List<Movie> moviesProduced;
 
     public Studio(String name, String adress) {
         this.name = name;

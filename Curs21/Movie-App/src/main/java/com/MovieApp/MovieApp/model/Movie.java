@@ -1,7 +1,6 @@
 package com.MovieApp.MovieApp.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,12 +8,12 @@ import java.util.List;
 
 @NoArgsConstructor
 @Entity
-@Data
-@TableGenerator(name = "movie")
+@AllArgsConstructor
+@Table(name = "MOVIE")
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
     @Column
     private String name;
@@ -25,6 +24,16 @@ public class Movie {
             cascade = CascadeType.ALL,
             mappedBy = "moviesCredited")
     private List<Actor> actorList;
+
+    @OneToMany(mappedBy = "movieList")
+    private List<MovieRating> ratings;
+
+    @ManyToOne
+    @JoinColumn(name = "studio_id")
+    private Studio studio;
+
+    @OneToMany(mappedBy = "movie")
+    private List<Review> reviews;
 
     public Movie(Integer id, String name, int year) {
         this.id = id;

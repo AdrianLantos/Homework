@@ -11,7 +11,7 @@ public class MovieService {
     private final MovieRatingRepository movieRatingRepository;
     private final StudioRepository studioRepository;
 
-    public MovieService(MemoryProvider memoryProvider,
+    public MovieService(
                         MovieRepository movieRepository,
                         ReviewRepository reviewRepository,
                         ActorRepository actorRepository,
@@ -23,15 +23,14 @@ public class MovieService {
         this.reviewRepository = reviewRepository;
         this.actorRepository = actorRepository;
         this.studioRepository = studioRepository;
+
+//        movieRepository.saveAll(memoryProvider.getMovies());
+//        movieRatingRepository.saveAll(memoryProvider.getRatings());
+//        reviewRepository.saveAll(memoryProvider.getReviews());
+//        actorRepository.saveAll(memoryProvider.getActors());
+//        studioRepository.saveAll(memoryProvider.getStudios());
     }
 
-    public void populateDatabase(MemoryProvider memoryProvider){
-        movieRepository.saveAll(memoryProvider.getMovies());
-        movieRatingRepository.saveAll(memoryProvider.getRatings());
-        reviewRepository.saveAll(memoryProvider.getReviews());
-        actorRepository.saveAll(memoryProvider.getActors());
-        studioRepository.saveAll(memoryProvider.getStudios());
-    }
     public MovieRepository getMovieRepository() {
         return movieRepository;
     }
